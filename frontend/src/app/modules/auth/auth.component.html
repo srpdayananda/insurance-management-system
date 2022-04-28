@@ -1,0 +1,44 @@
+<section class="vh-100 gradient-custom">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card bg-white text-dark" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+
+            <div class="mb-md-5 mt-md-4 pb-5">
+              <form [formGroup]="loginForm" #form="ngForm" (ngSubmit)="loginClickedHandler()">
+                <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+
+                <br>
+                <br>
+                <br>
+                <div class="form-outline form-white">
+
+                  <input type="email" id="typeEmailX" class="form-control form-control-lg" placeholder="Email"
+                    formControlName="email" />
+                </div>
+                <div class="error" *ngIf="form.submitted && f.email?.errors?.required">Email is required</div>
+                <div class="error" *ngIf="form.submitted && f.email?.errors?.email">Email is invalid</div>
+
+                <br>
+
+                <div class="form-outline form-white">
+
+                  <input type="password" id="typePasswordX" class="form-control form-control-lg" placeholder="Password"
+                    formControlName="password" />
+                </div>
+                <div class="error" *ngIf="form.submitted && f.password?.errors?.required">Password is required</div>
+                <div class="error" *ngIf="form.submitted && f.password?.errors?.minlength">Password should be contain 8
+                  characters</div>
+
+                <br>
+                <br>
+                <button class="btn btn-primary btn-lg px-5" type="submit">Login</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

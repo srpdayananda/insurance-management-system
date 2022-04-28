@@ -1,0 +1,20 @@
+.gradient-custom {
+  /* fallback for old browsers */
+  background: #eb0dcd;
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(
+    to right,
+    rgb(231, 30, 204),
+    rgb(224, 12, 224)
+  );
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right, rgb(168, 38, 151), rgb(62, 46, 209));
+}
+.form-label {
+  font-weight: bold;
+}
+.error {
+  color: red;
+}
