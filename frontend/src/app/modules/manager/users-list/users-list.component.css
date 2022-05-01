@@ -1,0 +1,97 @@
+.list {
+  justify-content: center;
+  margin: 0%;
+}
+.wrapper {
+  margin: 8px;
+  width: 300px;
+  transition: background 0.6s ease;
+  border-radius: 16px;
+  padding: 20px 20px 20px 20px;
+  box-shadow: 0 8px 40px rgb(0 0 0 / 20%);
+}
+.profile {
+  margin-top: 2.2em;
+  position: relative;
+}
+.profile::after {
+  width: 100%;
+  height: 1px;
+  content: " ";
+  display: block;
+  margin-top: 1.3em;
+  background: #e9eff6;
+}
+
+.user-image {
+  height: 124px;
+  width: 124px;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1.5px;
+  border-radius: 100%;
+  box-shadow: 0 13px 26px rgba(#000, 0.2), 0 3px 6px rgba(#000, 0.2);
+  cursor: pointer;
+}
+.userFullName {
+  color: #2d354a;
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+}
+.user-role {
+  color: #7c8097;
+  font-size: 0.75em;
+  font-weight: 300;
+  text-align: center;
+  padding-top: 0.5em;
+  padding-bottom: 0.7em;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.email {
+  text-align: center;
+}
+
+.actions {
+  display: flex;
+  margin-top: 1.2em;
+  justify-content: space-between;
+}
+.action {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.action a {
+  color: #ffffff;
+  width: 60px;
+  height: 60px;
+  font-size: 28px;
+  line-height: 60px;
+  text-align: center;
+  border-radius: 30px;
+  box-shadow: 0 13px 26px rgba(#000, 0.2), 0 3px 6px rgba(#000, 0.2);
+}
+.action:nth-of-type(1) a {
+  background: linear-gradient(to bottom right, #3ed039e7, #42dc10);
+}
+
+.action:nth-of-type(2) a {
+  background: linear-gradient(to bottom right, #c90a0a, #ee3124);
+}
+.edit-image {
+  height: 20px;
+  width: 20px;
+}
+.delete-image {
+  height: 20px;
+  width: 20px;
+}
+.filter-white {
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(168deg)
+    brightness(106%) contrast(101%);
+}

@@ -10,7 +10,7 @@ import {
 import { environment } from 'src/environments/environment';
 
 import { AUTH_USER } from 'src/app/constructor/app.constructor';
-import { Role } from './../../../shared/enum/enum';
+import { Role } from '../../../shared/enum/enum';
 
 @Injectable({
   providedIn: 'root',

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-manager',
@@ -7,12 +6,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./manager.component.css'],
 })
 export class ManagerComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor() { }
 
-  ngOnInit(): void {}
-
-  onLogout(): void {
-    localStorage.clear();
-    this.router.navigate(['auth']);
-  }
+  ngOnInit(): void { }
 }

@@ -8,6 +8,7 @@ import { AuthResponseProps } from 'src/app/shared/type/auth-props';
 import { Role } from 'src/app/shared/enum/enum';
 import { AUTH_TOKEN } from 'src/app/constructor/app.constructor';
 import { AUTH_USER } from './../../constructor/app.constructor';
+import { DataService } from './../../core/services/data/data.service';
 
 @Component({
   selector: 'app-auth',
@@ -21,7 +22,8 @@ export class AuthComponent implements OnInit {
     private authService: AuthService,
     private toastr: ToastrService,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private dataService: DataService
   ) {}
 
   ngOnInit(): void {
@@ -46,8 +48,14 @@ export class AuthComponent implements OnInit {
           localStorage.setItem(AUTH_TOKEN, response.user.accessToken);
 
           const { id, email, firstName, lastName, role } = response.user;
-          localStorage.setItem(AUTH_USER, JSON.stringify(response.user));
-
+          this.dataService.setIsLoggedIn(true);
+          this.dataService.setLoggedUser({
+            id,
+            email,
+            firstName,
+            lastName,
+            role,
+          });
           if (role === Role.MANAGER) {
             this.router.navigate(['manager']);
           } else if (role === Role.ADVISOR) {
