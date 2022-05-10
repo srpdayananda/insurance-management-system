@@ -1,8 +1,11 @@
-<nav class="navbar navbar-light bg-light">
-  <div class="container-fluid">
-<h2>manager</h2>
+<app-header></app-header>
+<div class="manager">
+  <div class="search-and-add-section">
+    <input class="search-bar" type="text" placeholder="Search User">
+    <button class="add-user">Add User</button>
   </div>
-</nav>
-<form class="d-flex">
-  <button class="btn btn-danger" type="button" (click)="onLogout()">LOGOUT</button>
-</form>
+  <div class="user-list">
+    <app-users-list></app-users-list>
+  </div>
+</div>
+<app-footer></app-footer>

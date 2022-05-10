@@ -17,10 +17,6 @@ export class AdvisorComponent implements OnInit {
     this.create();
   }
 
-  onLogout(): void {
-    localStorage.clear();
-    this.router.navigate(['auth']);
-  }
   create() {
     this.userService.create(this.user).subscribe(
       (response) => {
@@ -32,6 +28,6 @@ export class AdvisorComponent implements OnInit {
     );
   }
   test(): void {
-    this.router.navigate(['manager'])
+    this.router.navigate(['manager']);
   }
 }
