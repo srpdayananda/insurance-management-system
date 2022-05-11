@@ -1,0 +1,104 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 10px;
+  align-items: center;
+}
+.title {
+  text-align: center;
+  margin-left: 40%;
+  font-weight: 800;
+}
+.btnClose {
+  color: white;
+  background-color: red;
+  border-radius: 4px;
+  margin-right: 10px;
+  cursor: pointer;
+  border: none;
+}
+.btnClose:hover {
+  color: black;
+}
+
+.body {
+  margin: 10px;
+  margin: 5%;
+}
+.email {
+  margin-bottom: 5%;
+}
+.emailInput {
+  border-radius: 16px;
+  padding: 5px;
+  width: 300px;
+  border: 2px solid gray;
+}
+.firstName {
+  margin-bottom: 5%;
+}
+.firstNameInput {
+  border-radius: 16px;
+  padding: 5px;
+  width: 300px;
+  border: 2px solid gray;
+}
+.lastName {
+  margin-bottom: 5%;
+}
+.lastNameInput {
+  border-radius: 16px;
+  padding: 5px;
+  width: 300px;
+  border: 2px solid gray;
+}
+.password {
+  margin-bottom: 5%;
+}
+.passwordInput {
+  border-radius: 16px;
+  padding: 5px;
+  width: 300px;
+  border: 2px solid gray;
+}
+.role {
+  margin-bottom: 5%;
+}
+.roleInput {
+  border-radius: 16px;
+  padding: 5px;
+  width: 300px;
+  border: 2px solid gray;
+}
+.footer {
+  display: flex;
+  justify-content: end;
+}
+.clearBtn {
+  color: white;
+  background-color: blue;
+  border-radius: 8px;
+  padding: 4px 8px 4px 8px;
+  border: none;
+  margin-right: 10px;
+}
+.clearBtn:hover {
+  color: black;
+}
+.saveBtn {
+  color: white;
+  background-color: green;
+  border-radius: 8px;
+  padding: 4px 8px 4px 8px;
+  border: none;
+}
+.saveBtn:hover {
+  color: black;
+}
+
+.error {
+  color: red;
+  margin-left: 10px;
+}

@@ -1,0 +1,56 @@
+<ng-template #template>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="user-add-edit">
+            <div class="header">
+                <h2 class="title">Add User</h2>
+                <button class="btnClose" type="button" (click)="closeModal()">X</button>
+            </div>
+            <div class="body">
+                <div class="email">
+                    <input class="emailInput" type="text" formControlName="email" placeholder="Enter email">
+                    <div class="error" *ngIf="!form.get('email')?.valid && form.get('email')?.touched">
+                        <div *ngIf="form.get('email')?.errors?.['required']">
+                            Email is required!
+                        </div>
+                        <div *ngIf="form.get('email')?.errors?.['email']">
+                            Invalid Email!
+                        </div>
+                    </div>
+                </div>
+                <div class="firstName">
+                    <input class="firstNameInput" type="text" formControlName="firstName" placeholder="Enter firstName">
+                    <div class="error" *ngIf="!form.get('firstName')?.valid && form.get('firstName')?.touched">
+                        First name is required!
+                    </div>
+                </div>
+                <div class="lastName">
+                    <input class="lastNameInput" type="text" formControlName="lastName" placeholder="Enter lastName">
+                    <div class="error" *ngIf="!form.get('lastName')?.valid && form.get('lastName')?.touched">
+                        Last name is required!
+                    </div>
+                </div>
+                <div class="password">
+                    <input class="passwordInput" type="text" formControlName="password" placeholder="Enter password">
+                    <div class="error" *ngIf="!form.get('password')?.valid && form.get('password')?.touched">
+                        <div *ngIf="form.get('password')?.errors?.['required']">
+                            Password is required!
+                        </div>
+                        <div *ngIf="form.get('password')?.errors?.['minlength']">
+                            Password should be at least 8 characters!
+                        </div>
+                    </div>
+                </div>
+                <div class="role">
+                    <input class="roleInput" type="text" formControlName="role" placeholder="Enter role">
+                    <div class="error" *ngIf="!form.get('role')?.valid && form.get('role')?.touched">
+                        Role is required!
+                    </div>
+                </div>
+                <div class="footer">
+                    <button class="clearBtn" type="button" (click)="onClear()">Clear</button>
+                    <button class="saveBtn" type="submit">Save</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</ng-template>
