@@ -6,8 +6,8 @@ import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { AuthResponseProps } from 'src/app/shared/type/auth-props';
 import { Role } from 'src/app/shared/enum/enum';
-import { AUTH_TOKEN } from 'src/app/constructor/app.constructor';
-import { AUTH_USER } from './../../constructor/app.constructor';
+import { AUTH_TOKEN } from 'src/app/constant/constant';
+import { AUTH_USER } from '../../constant/constant';
 import { DataService } from './../../core/services/data/data.service';
 
 @Component({

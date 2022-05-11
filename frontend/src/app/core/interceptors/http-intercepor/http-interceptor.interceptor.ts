@@ -7,7 +7,7 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { AUTH_TOKEN } from './../../../constructor/app.constructor';
+import { AUTH_TOKEN } from '../../../constant/constant';
 
 @Injectable()
 export class HttpInterceptorInterceptor implements HttpInterceptor {

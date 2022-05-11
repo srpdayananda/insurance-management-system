@@ -19,6 +19,9 @@ export class ManagerComponent implements OnInit {
   ngOnInit(): void {
     this.getUsers()
   }
+  onRefetch(refetch: boolean) {
+    this.getUsers()
+  }
 
   getUsers(): void {
     this.userService.getUsers().subscribe((response) => {
