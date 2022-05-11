@@ -2,10 +2,11 @@
 <div class="manager">
   <div class="search-and-add-section">
     <input class="search-bar" type="text" placeholder="Search User">
-    <button class="add-user">Add User</button>
+    <button class="add-user" (click)="userAddEditModal()">Add User</button>
   </div>
-  <div class="user-list">
-    <app-users-list></app-users-list>
+  <div class="user-list" *ngIf="userList.length > 0">
+    <app-users-list [users]="userList"></app-users-list>
   </div>
 </div>
+<app-user-add-edit #addEditUserModal></app-user-add-edit>
 <app-footer></app-footer>
