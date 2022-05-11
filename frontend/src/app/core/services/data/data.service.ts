@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { AUTH_USER } from 'src/app/constructor/app.constructor';
+import { AUTH_USER } from 'src/app/constant/constant';
 import { IUser } from 'src/app/shared/interface/user.interface';
-import { AUTH_TOKEN } from '../../../constructor/app.constructor';
+import { AUTH_TOKEN } from '../../../constant/constant';
 
 @Injectable({
   providedIn: 'root',

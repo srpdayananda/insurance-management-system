@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { AUTH_TOKEN } from './constructor/app.constructor';
-import { AUTH_USER } from './constructor/app.constructor';
+import { AUTH_TOKEN } from './constant/constant';
+import { AUTH_USER } from './constant/constant';
 import { Role } from 'src/app/shared/enum/enum';
 
 @Component({

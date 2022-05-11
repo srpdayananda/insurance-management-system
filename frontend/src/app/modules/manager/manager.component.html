@@ -8,5 +8,5 @@
     <app-users-list [users]="userList"></app-users-list>
   </div>
 </div>
-<app-user-add-edit #addEditUserModal></app-user-add-edit>
+<app-user-add-edit #addEditUserModal (refetch)="onRefetch($event)"></app-user-add-edit>
 <app-footer></app-footer>

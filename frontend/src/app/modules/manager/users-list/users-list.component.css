@@ -60,6 +60,7 @@
   display: flex;
   margin-top: 1.2em;
   justify-content: space-between;
+  cursor: pointer;
 }
 .action {
   display: flex;
