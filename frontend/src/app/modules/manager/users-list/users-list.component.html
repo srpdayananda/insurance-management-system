@@ -1,5 +1,5 @@
 <div class="row list">
-    <div class="wrapper" *ngFor="let user of users;let index ">
+    <div class="wrapper" *ngFor="let user of users | filter:search ">
         <div class="profile">
             <img src="assets/img/user.svg" alt="" class="user-image">
             <h3 class="userFullName">{{ user.firstName + " " + user.lastName }}</h3>
@@ -11,7 +11,7 @@
 
         <div class="actions">
             <div class="action">
-                <a (click)="openEditComponent()">
+                <a (click)="openEditComponent(user)">
                     <img src="assets/icons/edit.svg" alt="" class="edit-image filter-white">
                     <app-user-add-edit #goToEdit></app-user-add-edit>
                 </a>
