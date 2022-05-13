@@ -1,8 +1,7 @@
 import { Router } from '@angular/router';
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { IUser } from './../../../shared/interface/user.interface';
-import { UserAddEditComponent } from './../user-add-edit/user-add-edit.component';
 
 @Component({
   selector: 'app-users-list',
@@ -11,7 +10,6 @@ import { UserAddEditComponent } from './../user-add-edit/user-add-edit.component
 })
 export class UsersListComponent implements OnInit {
   @Input() users: IUser[];
-  @ViewChild('goToEdit') goToEdit: UserAddEditComponent;
   @Input() search: any;
   @Output() editUser = new EventEmitter<IUser>()
 
@@ -23,7 +21,6 @@ export class UsersListComponent implements OnInit {
 
   openEditComponent(user: IUser) {
     this.editUser.emit(user)
-    this.goToEdit.openModal()
   }
 
 }

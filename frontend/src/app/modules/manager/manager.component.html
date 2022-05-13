@@ -5,7 +5,7 @@
     <button class="add-user" (click)="userAddEditModal()">Add User</button>
   </div>
   <div class="user-list" *ngIf="userList.length > 0">
-    <app-users-list [users]="userList" [search]="searchText"></app-users-list>
+    <app-users-list [users]="userList" [search]="searchText" (editUser)="onEditUser($event)"></app-users-list>
   </div>
 </div>
 <app-user-add-edit #addEditUserModal (refetch)="onRefetch($event)"></app-user-add-edit>

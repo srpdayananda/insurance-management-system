@@ -21,4 +21,7 @@ export class UserService {
   getUsers(): Observable<any> {
     return this.http.get<any>(`${this.API_URL}/user`);
   }
+  updateUser(user: any): Observable<HttpResponse> {
+    return this.http.put<HttpResponse>(`${this.API_URL}/user`, user)
+  }
 }
