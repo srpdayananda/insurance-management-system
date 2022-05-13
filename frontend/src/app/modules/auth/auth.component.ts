@@ -24,7 +24,7 @@ export class AuthComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
     private dataService: DataService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -47,7 +47,7 @@ export class AuthComponent implements OnInit {
           this.toastr.success(response.message, 'Success!');
           localStorage.setItem(AUTH_TOKEN, response.user.accessToken);
 
-          const { id, email, firstName, lastName, role } = response.user;
+          const { id, email, firstName, lastName, role, password } = response.user;
           this.dataService.setIsLoggedIn(true);
           this.dataService.setLoggedUser({
             id,
@@ -55,6 +55,7 @@ export class AuthComponent implements OnInit {
             firstName,
             lastName,
             role,
+            password
           });
           if (role === Role.MANAGER) {
             this.router.navigate(['manager']);

@@ -2,7 +2,7 @@
     <form #userForm="ngForm" [formGroup]="form" (ngSubmit)="submit()">
         <div class="user-add-edit">
             <div class="header">
-                <h2 class="title">Add User</h2>
+                <h2 class="title">{{editMode ? 'Update User' : 'Add User' }}</h2>
                 <button class="btnClose" type="button" (click)="closeModal()">X</button>
             </div>
             <div class="body">
