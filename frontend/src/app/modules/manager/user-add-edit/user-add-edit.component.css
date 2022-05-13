@@ -65,6 +65,10 @@
 .role {
   margin-bottom: 5%;
   justify-content: flex-start;
+  border-radius: 16px;
+  padding: 5px;
+  width: 300px;
+  border: 2px solid gray;
 }
 
 .footer {

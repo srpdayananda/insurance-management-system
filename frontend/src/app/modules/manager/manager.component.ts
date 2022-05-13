@@ -11,6 +11,7 @@ import { UserAddEditComponent } from './user-add-edit/user-add-edit.component';
 export class ManagerComponent implements OnInit {
   userList: Array<any>
   @ViewChild('addEditUserModal') addEditUserModal: UserAddEditComponent;
+  searchText: any;
 
   constructor(private userService: UserService) {
     this.userList = []
@@ -20,7 +21,10 @@ export class ManagerComponent implements OnInit {
     this.getUsers()
   }
   onRefetch(refetch: boolean) {
-    this.getUsers()
+    if (refetch) {
+      this.getUsers()
+    }
+
   }
 
   getUsers(): void {

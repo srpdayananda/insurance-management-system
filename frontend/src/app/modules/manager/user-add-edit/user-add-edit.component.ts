@@ -4,6 +4,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 import { UserService } from './../../../core/services/user/user.service';
 import { ToastrService } from 'ngx-toastr';
+import { Role } from './../../../shared/enum/enum';
 
 @Component({
   selector: 'app-user-add-edit',
@@ -14,10 +15,13 @@ export class UserAddEditComponent implements OnInit {
   @ViewChild('template') template: TemplateRef<any>
   modalRef?: BsModalRef;
   form: FormGroup;
-  @Output('refetch') refetch = new EventEmitter<boolean>()
+  @Output('refetch') refetch: EventEmitter<boolean>
+  roles: Array<string>
+
 
   constructor(private modalService: BsModalService, private userService: UserService, private toastr: ToastrService) {
-    this.refetch.emit(false)
+    this.refetch = new EventEmitter(false);
+    this.roles = Object.keys(Role)
   }
 
 
@@ -27,10 +31,9 @@ export class UserAddEditComponent implements OnInit {
       firstName: new FormControl('', Validators.required),
       lastName: new FormControl('', Validators.required),
       password: new FormControl('', [Validators.required, Validators.minLength(8)]),
-      role: new FormControl('', Validators.required)
+      role: new FormControl(this.roles[1], Validators.required)
     })
   }
-  userRole = ['MANAGER', 'ADVISOR']
 
   get f() {
     return this.form.controls

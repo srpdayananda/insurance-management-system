@@ -37,14 +37,11 @@
                         Password should be at least 8 characters!
                     </div>
                 </div>
-                <div class="role" *ngFor="let role of userRole">
-                    <input class="roleInput" type="radio" formControlName="role" placeholder="Enter role"
-                        [value]="role">
-                    {{ role }}
-                    <div class="error" *ngIf="userForm.submitted && f.role?.errors?.required">
-                        Select One Item "MANAGER" or "ADVISOR"
-                    </div>
-                </div>
+                <select class="role" formControlName="role">
+                    <option *ngFor="let role of roles" [value]="role">
+                        {{ role }}
+                    </option>
+                </select>
                 <div class="footer">
                     <button class="saveBtn" type="submit">Save</button>
                 </div>
