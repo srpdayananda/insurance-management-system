@@ -2,11 +2,11 @@
     <form #userForm="ngForm" [formGroup]="form" (ngSubmit)="submit()">
         <div class="user-add-edit">
             <div class="header">
-                <h2 class="title">{{editMode ? 'Update User' : 'Add User' }}</h2>
+                <h2 class="title">{{editUserId ? 'Update User' : 'Add User'}}</h2>
                 <button class="btnClose" type="button" (click)="closeModal()">X</button>
             </div>
             <div class="body">
-                <div class="email">
+                <div *ngIf="editUserId === null" class="email">
                     <input class="emailInput" type="email" formControlName="email" placeholder="Enter email">
                     <div class="error" *ngIf="userForm.submitted && f.email?.errors?.required">
                         Email is required!
@@ -27,7 +27,7 @@
                         Last name is required!
                     </div>
                 </div>
-                <div class="password">
+                <div *ngIf="editUserId === null" class="password">
                     <input class="passwordInput" type="password" formControlName="password"
                         placeholder="Enter password">
                     <div class="error" *ngIf="userForm.submitted && f.password?.errors?.required">
@@ -37,7 +37,7 @@
                         Password should be at least 8 characters!
                     </div>
                 </div>
-                <select class="role" formControlName="role">
+                <select *ngIf="editUserId === null" class="role" formControlName="role">
                     <option *ngFor="let role of roles" [value]="role">
                         {{ role }}
                     </option>

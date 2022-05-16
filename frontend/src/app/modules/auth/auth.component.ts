@@ -47,10 +47,10 @@ export class AuthComponent implements OnInit {
           this.toastr.success(response.message, 'Success!');
           localStorage.setItem(AUTH_TOKEN, response.user.accessToken);
 
-          const { id, email, firstName, lastName, role, password } = response.user;
+          const { _id, email, firstName, lastName, role, password } = response.user;
           this.dataService.setIsLoggedIn(true);
           this.dataService.setLoggedUser({
-            id,
+            _id,
             email,
             firstName,
             lastName,

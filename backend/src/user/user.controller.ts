@@ -105,24 +105,25 @@ export default {
           message: "You Have not Permission",
         });
       }
-      const foundUser = await User.findOne({ _id: req.query._id });
+      const foundUser = await User.findOne({ _id: req.body.id });
       if (!foundUser) {
         return res.send({
           success: false,
           message: "Failed User Updated!",
-          errors: "couldn't find relevant UserId",
+          errors: ["couldn't find relevant UserId"],
         });
       }
-      const userId = { _id: req.body._id };
+      const query = { _id: req.body.id };
       const newValue = {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
       };
-      const updateUser = await User.updateOne(userId, newValue);
+
+      const updateUser = await User.updateOne(query, newValue);
       return res.status(200).send({
         success: true,
         message: "User Updated Successfully",
-        user: updateUser,
+        user: updateUser
       });
     } catch (error) {
       return res.send({
@@ -146,7 +147,7 @@ export default {
         return res.send({
           success: false,
           message: "Failed User Deleted!",
-          errors: "couldn't find relevant UserId",
+          errors: ["couldn't find relevant UserId"],
         });
       }
 

@@ -5,8 +5,6 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { ManagerRoutingModule } from './manager-routing.module';
 import { FormsModule } from '@angular/forms'
 
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
-
 import { ManagerComponent } from './manager.component';
 import { UsersListComponent } from './users-list/users-list.component';
 import { ComponentsModule } from './../../shared/components/components.module';
@@ -14,7 +12,7 @@ import { UserAddEditComponent } from './user-add-edit/user-add-edit.component';
 
 @NgModule({
   declarations: [ManagerComponent, UsersListComponent, UserAddEditComponent,],
-  imports: [CommonModule, ManagerRoutingModule, ReactiveFormsModule, ComponentsModule, ModalModule.forRoot(), Ng2SearchPipeModule, FormsModule],
+  imports: [CommonModule, ManagerRoutingModule, ReactiveFormsModule, ComponentsModule, ModalModule.forRoot(), FormsModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class ManagerModule { }

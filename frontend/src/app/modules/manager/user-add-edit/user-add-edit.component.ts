@@ -17,13 +17,9 @@ export class UserAddEditComponent implements OnInit {
   modalRef?: BsModalRef;
   form: FormGroup;
   @Output('refetch') refetch: EventEmitter<boolean>
-  editMode: boolean;
-
   roles: Array<string>
-  userEmail: string;
-  userFirstName: string;
-  userLastName: string;
-  userPassword: string;
+  editUserId: string | null;
+
 
 
   constructor(
@@ -33,11 +29,7 @@ export class UserAddEditComponent implements OnInit {
   ) {
     this.refetch = new EventEmitter(false);
     this.roles = Object.keys(Role)
-    this.userEmail = '';
-    this.userFirstName = '';
-    this.userLastName = '';
-    this.userPassword = '';
-    this.editMode = false;
+    this.editUserId = null
   }
 
 
@@ -47,56 +39,88 @@ export class UserAddEditComponent implements OnInit {
   get f() {
     return this.form.controls
   }
-  openModal(user: IUser) {
+  openModal(user?: IUser) {
     if (user) {
-      this.editMode = true;
-      this.userEmail = user.email
-      this.userFirstName = user.firstName
-      this.userLastName = user.lastName
-      this.userPassword = user.password
-      this.roles[0] = user.role
+      this.editUserId = user._id
+      this.form = new FormGroup({
+        firstName: new FormControl(user.firstName, Validators.required),
+        lastName: new FormControl(user.lastName, Validators.required),
+      })
     }
-    this.editMode = false;
-
+    else {
+      this.form = new FormGroup({
+        email: new FormControl('', [Validators.required, Validators.email]),
+        firstName: new FormControl('', Validators.required),
+        lastName: new FormControl('', Validators.required),
+        password: new FormControl('', [Validators.required, Validators.minLength(8)]),
+        role: new FormControl(this.roles[1], Validators.required)
+      })
+    }
     this.modalRef = this.modalService.show(this.template);
-
-    this.form = new FormGroup({
-      email: new FormControl(this.userEmail, [Validators.required, Validators.email]),
-      firstName: new FormControl(this.userFirstName, Validators.required),
-      lastName: new FormControl(this.userLastName, Validators.required),
-      password: new FormControl(this.userPassword, [Validators.required, Validators.minLength(8)]),
-      role: new FormControl(this.roles[1], Validators.required)
-    })
   }
 
   closeModal() {
     this.modalService.hide()
-    this.form.reset()
+
+    setTimeout(() => {
+      this.form.reset()
+    }, 500)
     this.refetch.emit(false)
+    setTimeout(() => {
+      this.editUserId = null
+    }, 500)
   }
 
   submit() {
     if (this.form.invalid) {
       return;
     }
-    if (this.editMode) {
-
-      this.userService.updateUser(this.form.value).subscribe((response) => {
-        console.log('@@@', response)
-      }, (err) => {
-        console.log('###', err)
-      })
+    if (this.editUserId) {
+      this.updateUser();
+      return;
     }
-    this.userService.create(this.form.value).subscribe((response) => {
+    this.create();
+  }
+
+
+  updateUser() {
+    const props = {
+      id: this.editUserId,
+      firstName: this.form.controls['firstName'].value,
+      lastName: this.form.controls['lastName'].value
+    }
+    this.userService.updateUser(props).subscribe((response) => {
       if (response.success) {
         this.toastr.success(response.message)
-        this.form.reset();
         this.modalService.hide()
+        setTimeout(() => {
+          this.form.reset();
+        }, 500);
         this.refetch.emit(true)
+        setTimeout(() => {
+          this.editUserId = null
+        }, 500)
       }
     }, (err) => {
       this.toastr.error(err?.error?.errors)
     })
   }
 
+  create() {
+    this.userService.create(this.form.value).subscribe((response) => {
+      if (response.success) {
+        this.toastr.success(response.message)
+        this.modalService.hide()
+        setTimeout(() => {
+          this.form.reset();
+        }, 500);
+        this.refetch.emit(true)
+      }
+    }, (err) => {
+      this.toastr.error(err?.error?.errors)
+    })
+  }
 }
+
+
+

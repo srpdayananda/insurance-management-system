@@ -10,7 +10,6 @@ import { IUser } from './../../../shared/interface/user.interface';
 })
 export class UsersListComponent implements OnInit {
   @Input() users: IUser[];
-  @Input() search: any;
   @Output() editUser = new EventEmitter<IUser>()
 
   constructor(private router: Router) {
