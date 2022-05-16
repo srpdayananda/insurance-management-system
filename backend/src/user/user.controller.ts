@@ -84,10 +84,14 @@ export default {
         });
       }
       const foundUsers = await User.find();
+      const modifyUser = foundUsers.map((user: any) => {
+        return { id: user._id, firstName: user.firstName, lastName: user.lastName, role: user.role }
+      })
+
       return res.status(200).send({
         success: true,
         message: "User Getting Successfully",
-        users: foundUsers,
+        users: modifyUser,
       });
     } catch (error) {
       return res.send({

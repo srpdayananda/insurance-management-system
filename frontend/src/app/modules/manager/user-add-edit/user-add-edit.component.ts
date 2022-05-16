@@ -41,7 +41,7 @@ export class UserAddEditComponent implements OnInit {
   }
   openModal(user?: IUser) {
     if (user) {
-      this.editUserId = user._id
+      this.editUserId = user.id
       this.form = new FormGroup({
         firstName: new FormControl(user.firstName, Validators.required),
         lastName: new FormControl(user.lastName, Validators.required),
@@ -61,14 +61,11 @@ export class UserAddEditComponent implements OnInit {
 
   closeModal() {
     this.modalService.hide()
-
     setTimeout(() => {
       this.form.reset()
-    }, 500)
-    this.refetch.emit(false)
-    setTimeout(() => {
       this.editUserId = null
     }, 500)
+    this.refetch.emit(false)
   }
 
   submit() {
@@ -79,7 +76,7 @@ export class UserAddEditComponent implements OnInit {
       this.updateUser();
       return;
     }
-    this.create();
+    this.createUser();
   }
 
 
@@ -95,18 +92,16 @@ export class UserAddEditComponent implements OnInit {
         this.modalService.hide()
         setTimeout(() => {
           this.form.reset();
+          this.editUserId = null
         }, 500);
         this.refetch.emit(true)
-        setTimeout(() => {
-          this.editUserId = null
-        }, 500)
       }
     }, (err) => {
-      this.toastr.error(err?.error?.errors)
+      const errors = err.map((message: string) => this.toastr.error(err?.error?.message))
     })
   }
 
-  create() {
+  createUser() {
     this.userService.create(this.form.value).subscribe((response) => {
       if (response.success) {
         this.toastr.success(response.message)
@@ -117,7 +112,7 @@ export class UserAddEditComponent implements OnInit {
         this.refetch.emit(true)
       }
     }, (err) => {
-      this.toastr.error(err?.error?.errors)
+      const errors = err.map((message: string) => this.toastr.error(err?.error?.message))
     })
   }
 }
