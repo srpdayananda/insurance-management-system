@@ -2,12 +2,12 @@
     <form #userForm="ngForm" [formGroup]="form" (ngSubmit)="submit()">
         <div class="user-add-edit">
             <div class="header">
-                <h2 class="title">{{editMode ? 'Update User' : 'Add User' }}</h2>
-                <button class="btnClose" type="button" (click)="closeModal()">X</button>
+                <h2 class="title">{{editUserId ? 'Update User' : 'Add User'}}</h2>
+                <button class="btn-close" type="button" (click)="closeModal()">X</button>
             </div>
             <div class="body">
-                <div class="email">
-                    <input class="emailInput" type="email" formControlName="email" placeholder="Enter email">
+                <div *ngIf="editUserId === null" class="email">
+                    <input class="email-input" type="email" formControlName="email" placeholder="Enter email">
                     <div class="error" *ngIf="userForm.submitted && f.email?.errors?.required">
                         Email is required!
                     </div>
@@ -16,19 +16,19 @@
                     </div>
                 </div>
                 <div class="firstName">
-                    <input class="firstNameInput" type="text" formControlName="firstName" placeholder="Enter firstName">
+                    <input class="firstName-input" type="text" formControlName="firstName" placeholder="Enter firstName">
                     <div class="error" *ngIf="userForm.submitted && f.firstName?.errors?.required">
                         First name is required!
                     </div>
                 </div>
                 <div class="lastName">
-                    <input class="lastNameInput" type="text" formControlName="lastName" placeholder="Enter lastName">
+                    <input class="lastName-input" type="text" formControlName="lastName" placeholder="Enter lastName">
                     <div class="error" *ngIf="userForm.submitted && f.lastName?.errors?.required">
                         Last name is required!
                     </div>
                 </div>
-                <div class="password">
-                    <input class="passwordInput" type="password" formControlName="password"
+                <div *ngIf="editUserId === null" class="password">
+                    <input class="password-input" type="password" formControlName="password"
                         placeholder="Enter password">
                     <div class="error" *ngIf="userForm.submitted && f.password?.errors?.required">
                         Password is required!
@@ -37,13 +37,13 @@
                         Password should be at least 8 characters!
                     </div>
                 </div>
-                <select class="role" formControlName="role">
+                <select *ngIf="editUserId === null" class="role" formControlName="role">
                     <option *ngFor="let role of roles" [value]="role">
                         {{ role }}
                     </option>
                 </select>
                 <div class="footer">
-                    <button class="saveBtn" type="submit">Save</button>
+                    <button class="btn-save" type="submit">Save</button>
                 </div>
             </div>
         </div>

@@ -8,10 +8,10 @@
 }
 .title {
   text-align: center;
-  margin-left: 40%;
+  margin-left: 100px;
   font-weight: 800;
 }
-.btnClose {
+.btn-close {
   color: black;
   background-color: white;
   font-size: 25px;
@@ -29,7 +29,7 @@
 .email {
   margin-bottom: 5%;
 }
-.emailInput {
+.email-input {
   border-radius: 16px;
   padding: 5px;
   width: 300px;
@@ -38,7 +38,7 @@
 .firstName {
   margin-bottom: 5%;
 }
-.firstNameInput {
+.firstName-input {
   border-radius: 16px;
   padding: 5px;
   width: 300px;
@@ -47,7 +47,7 @@
 .lastName {
   margin-bottom: 5%;
 }
-.lastNameInput {
+.lastName-input {
   border-radius: 16px;
   padding: 5px;
   width: 300px;
@@ -56,7 +56,7 @@
 .password {
   margin-bottom: 5%;
 }
-.passwordInput {
+.password-input {
   border-radius: 16px;
   padding: 5px;
   width: 300px;
@@ -75,18 +75,8 @@
   display: flex;
   justify-content: end;
 }
-.clearBtn {
-  color: white;
-  background-color: blue;
-  border-radius: 8px;
-  padding: 4px 8px 4px 8px;
-  border: none;
-  margin-right: 10px;
-}
-.clearBtn:hover {
-  color: black;
-}
-.saveBtn {
+
+.btn-save {
   color: white;
   background: linear-gradient(to bottom right, #3ed039e7, #42dc10);
   border-radius: 16px;
@@ -95,7 +85,7 @@
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   transition: width 2s;
 }
-.saveBtn:hover {
+.btn-save:hover {
   width: 100px;
   height: 50px;
 }

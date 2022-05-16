@@ -1,5 +1,5 @@
 <div class="row list">
-    <div class="wrapper" *ngFor="let user of users | filter:search ">
+    <div class="wrapper" *ngFor="let user of users">
         <div class="profile">
             <img src="assets/img/user.svg" alt="" class="user-image">
             <h3 class="userFullName">{{ user.firstName + " " + user.lastName }}</h3>
