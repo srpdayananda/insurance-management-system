@@ -18,7 +18,7 @@ export class AdvisorComponent implements OnInit {
   }
 
   create() {
-    this.userService.create(this.user).subscribe(
+    this.userService.createUser(this.user).subscribe(
       (response) => {
         console.log(response);
       },

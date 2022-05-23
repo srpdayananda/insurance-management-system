@@ -5,8 +5,9 @@
     <button class="add-user" (click)="userAddEditModal()">Add User</button>
   </div>
   <div class="user-list" *ngIf="userList.length > 0">
-    <app-users-list [users]="searchUserList"  (editUser)="onEditUser($event)"></app-users-list>
+    <app-users-list [users]="searchUserList"  (onEdit)="onEditUser($event)" (onDelete)="onDeleteUser($event)" ></app-users-list>
   </div>
 </div>
 <app-user-add-edit #addEditUserModal (refetch)="onRefetch($event)"></app-user-add-edit>
+<app-conformation-popup #deleteUserModal (isConform)="onConform($event)"></app-conformation-popup>
 <app-footer></app-footer>
