@@ -1,4 +1,3 @@
-import { Router } from '@angular/router';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { IUser } from './../../../shared/interface/user.interface';
@@ -10,16 +9,23 @@ import { IUser } from './../../../shared/interface/user.interface';
 })
 export class UsersListComponent implements OnInit {
   @Input() users: IUser[];
-  @Output() editUser = new EventEmitter<IUser>()
+  @Output() onEdit: EventEmitter<IUser>
+  @Output() onDelete: EventEmitter<string>
 
-  constructor(private router: Router) {
+  constructor() {
+    this.onEdit = new EventEmitter<IUser>()
+    this.onDelete = new EventEmitter<string>()
   }
 
   ngOnInit(): void {
   }
 
-  openEditComponent(user: IUser) {
-    this.editUser.emit(user)
+  editClickListener(user: IUser) {
+    this.onEdit.emit(user)
+  }
+
+  deleteClickListener(user: IUser) {
+    this.onDelete.emit(user.id)
   }
 
 }

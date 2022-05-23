@@ -3,7 +3,7 @@
         <div class="user-add-edit">
             <div class="header">
                 <h2 class="title">{{editUserId ? 'Update User' : 'Add User'}}</h2>
-                <button class="btn-close" type="button" (click)="closeModal()">X</button>
+                <button class="btn-closed" type="button" (click)="closeModal()">X</button>
             </div>
             <div class="body">
                 <div *ngIf="editUserId === null" class="email">

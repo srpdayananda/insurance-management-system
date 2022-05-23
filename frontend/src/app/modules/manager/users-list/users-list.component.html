@@ -11,12 +11,12 @@
 
         <div class="actions">
             <div class="action">
-                <a (click)="openEditComponent(user)">
+                <a (click)="editClickListener(user)">
                     <img src="assets/icons/edit.svg" alt="" class="edit-image filter-white">
                 </a>
             </div>
             <div class="action">
-                <a href="javascript:void(0)">
+                <a (click)="deleteClickListener(user)">
                     <img src="assets/icons/delete.svg" alt="" class="delete-image filter-white">
                 </a>
             </div>
