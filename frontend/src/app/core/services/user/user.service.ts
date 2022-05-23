@@ -1,5 +1,5 @@
 import { HttpResponse } from './../../../shared/type/common';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -15,7 +15,7 @@ export class UserService {
     this.API_URL = environment.apiUrl;
   }
 
-  create(user: any): Observable<HttpResponse> {
+  createUser(user: any): Observable<HttpResponse> {
     return this.http.post<HttpResponse>(`${this.API_URL}/user`, user);
   }
   getUsers(): Observable<any> {
@@ -23,5 +23,9 @@ export class UserService {
   }
   updateUser(user: any): Observable<HttpResponse> {
     return this.http.put<HttpResponse>(`${this.API_URL}/user`, user)
+  }
+  deleteUser(id: string): Observable<HttpResponse> {
+    const params = new HttpParams().append('id', id);
+    return this.http.delete<HttpResponse>(`${this.API_URL}/user`, { params })
   }
 }

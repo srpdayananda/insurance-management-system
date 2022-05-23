@@ -56,7 +56,11 @@ export class UserAddEditComponent implements OnInit {
         role: new FormControl(this.roles[1], Validators.required)
       })
     }
-    this.modalRef = this.modalService.show(this.template);
+    this.modalRef = this.modalService.show(this.template, {
+      class: 'bs-modal-top-20',
+      animated: true,
+      ignoreBackdropClick: true
+    });
   }
 
   closeModal() {
@@ -102,7 +106,7 @@ export class UserAddEditComponent implements OnInit {
   }
 
   createUser() {
-    this.userService.create(this.form.value).subscribe((response) => {
+    this.userService.createUser(this.form.value).subscribe((response) => {
       if (response.success) {
         this.toastr.success(response.message)
         this.modalService.hide()
