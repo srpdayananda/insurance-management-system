@@ -1,4 +1,6 @@
-import { Component,  OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+
+import { ToastrService } from 'ngx-toastr';
 
 import { UserService } from './../../core/services/user/user.service';
 import { UserAddEditComponent } from './user-add-edit/user-add-edit.component';
@@ -15,12 +17,12 @@ export class ManagerComponent implements OnInit {
   @ViewChild('addEditUserModal') addEditUserModal: UserAddEditComponent;
   @ViewChild('deleteUserModal') deleteUserModal: ConformationPopupComponent
   searchUserList: Array<IUser>
-  isConform: boolean;
+  deletedUserId: string | null;
 
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private toastr: ToastrService) {
     this.userList = []
-    this.isConform = false;
+    this.deletedUserId = null
   }
 
   ngOnInit(): void {
@@ -66,25 +68,28 @@ export class ManagerComponent implements OnInit {
   }
 
   onConform(isConform: boolean) {
-    if (isConform) {
-      this.isConform = isConform;
-      console.log('@@@', this.isConform)
-      
+    if (isConform && this.deletedUserId) {
+      this.userService.deleteUser(this.deletedUserId).subscribe((response) => {
+        if (response.success) {
+          this.toastr.success(response.message);
+          this.deletedUserId = null
+          this.getUsers()
+        }
+      }, (err) => {
+        const errors = err?.error?.errors;
+        if (errors.length) {
+          errors.map((message: string) => this.toastr.error(message))
+        }
+      })
+
     }
   }
 
   onDeleteUser(userId: string) {
     if (userId) {
+      this.deletedUserId = userId;
 
       const message: string = 'Are you sure you want to delete this user ..?'
-
-
-      this.userService.deleteUser(userId).subscribe((response) => {
-        console.log(response)
-        this.isConform
-      }, (err) => {
-        console.log(err)
-      })
 
       this.deleteUserModal.openModal(message)
     }

@@ -18,12 +18,15 @@ export class UserService {
   createUser(user: any): Observable<HttpResponse> {
     return this.http.post<HttpResponse>(`${this.API_URL}/user`, user);
   }
+
   getUsers(): Observable<any> {
     return this.http.get<any>(`${this.API_URL}/user`);
   }
+
   updateUser(user: any): Observable<HttpResponse> {
     return this.http.put<HttpResponse>(`${this.API_URL}/user`, user)
   }
+  
   deleteUser(id: string): Observable<HttpResponse> {
     const params = new HttpParams().append('id', id);
     return this.http.delete<HttpResponse>(`${this.API_URL}/user`, { params })

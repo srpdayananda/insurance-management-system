@@ -70,7 +70,7 @@ export default {
         message: "User Created Successfully",
       });
     } catch (error) {
-      return res.send({ success: false, message: "Internal server error" });
+      return res.status(400).send({ success: false, message: "Internal server error" });
     }
   },
 
@@ -94,7 +94,7 @@ export default {
         users: modifyUser,
       });
     } catch (error) {
-      return res.send({
+      return res.status(400).send({
         success: false,
         message: "Internal server error",
       });
@@ -111,7 +111,7 @@ export default {
       }
       const foundUser = await User.findOne({ _id: req.body.id });
       if (!foundUser) {
-        return res.send({
+        return res.status(400).send({
           success: false,
           message: "Failed User Updated!",
           errors: ["couldn't find relevant UserId"],
@@ -130,7 +130,7 @@ export default {
         user: updateUser
       });
     } catch (error) {
-      return res.send({
+      return res.status(400).send({
         success: false,
         message: "Internal server error",
       });
@@ -146,22 +146,22 @@ export default {
         });
       }
 
-      const foundUser = await User.findOne({ _id: req.query._id });
+      const foundUser = await User.findOne({ _id: req.query.id });
       if (!foundUser) {
-        return res.send({
+        return res.status(400).send({
           success: false,
           message: "Failed User Deleted!",
           errors: ["couldn't find relevant UserId"],
         });
       }
 
-      await User.deleteOne({ _id: req.query._id });
+      await User.deleteOne({ _id: req.query.id });
       return res.status(200).send({
         success: true,
         message: "User Deleted Successfully",
       });
     } catch (error) {
-      return res.send({
+      return res.status(400).send({
         success: false,
         message: "Internal server error",
       });

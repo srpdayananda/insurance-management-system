@@ -101,7 +101,10 @@ export class UserAddEditComponent implements OnInit {
         this.refetch.emit(true)
       }
     }, (err) => {
-      const errors = err.map((message: string) => this.toastr.error(err?.error?.message))
+      const errors = err?.error?.errors;
+        if (errors.length) {
+          errors.map((message: string) => this.toastr.error(message))
+        }
     })
   }
 
@@ -116,7 +119,10 @@ export class UserAddEditComponent implements OnInit {
         this.refetch.emit(true)
       }
     }, (err) => {
-      const errors = err.map((message: string) => this.toastr.error(err?.error?.message))
+      const errors = err?.error?.errors;
+        if (errors.length) {
+          errors.map((message: string) => this.toastr.error(message))
+        }
     })
   }
 }
