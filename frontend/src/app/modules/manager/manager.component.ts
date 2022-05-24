@@ -66,6 +66,7 @@ export class ManagerComponent implements OnInit {
   onEditUser(user: IUser) {
     this.addEditUserModal.openModal(user)
   }
+  
 
   onConform(isConform: boolean) {
     if (isConform && this.deletedUserId) {
