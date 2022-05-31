@@ -1,11 +1,12 @@
 <app-header></app-header>
-<h2>advisor</h2>
-<hr>
-<button (click)="test()">click me</button>
-<br>
-<div>
-  <a href="">
-    <img src="assets/icons/update.svg" alt="" class="update-img">
-  </a>
+<div class="advisor">
+  <div class="search-and-add-selection">
+    <input type="text" class="search-bar" name="search" placeholder="Search Policy">
+    <button class="add-policy" (click)="addPolicyModal()" >Add Policy</button>
+  </div>
+  <div class="policies-list">
+    <app-policies-list></app-policies-list>
+  </div>
 </div>
+<app-policies-add-edit #onAddPolicyModal></app-policies-add-edit>
 <app-footer></app-footer>

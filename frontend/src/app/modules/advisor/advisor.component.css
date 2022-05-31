@@ -1,0 +1,27 @@
+.search-and-add-selection {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+  align-items: center;
+}
+
+.search-bar {
+  padding: 4px 20px;
+  width: 400px;
+  margin-right: 20px;
+  border-radius: 16px;
+  border: 2px solid gray;
+}
+
+.add-policy {
+  background-color: #ff5722;
+  color: #ffffff;
+  font-weight: 500;
+  padding: 6px 24px;
+  border: none;
+  border-radius: 12px;
+}
+
+.policies-list {
+  padding: 20px 40px;
+}

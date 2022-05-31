@@ -1,0 +1,51 @@
+<ng-template #template>
+    <form #policyForm="ngForm" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="add-policy">
+            <div class="header">
+                <h2 class="title">Add Policy</h2>
+                <button class="btn-closed" (click)="onClosed()" type="button">X</button>
+            </div>
+            <div class="body">
+                <div class="name">
+                    <input type="text" class="input-field" formControlName="name" placeholder="Name">
+                    <div class="error" *ngIf="policyForm.submitted && f.name?.errors?.required">
+                        Name is required!
+                    </div>
+                </div>
+                <div class="age">
+                    <input type="number" class="input-field" formControlName="age" placeholder="Age">
+                    <div class="error" *ngIf="policyForm.submitted && f.age?.errors?.required">
+                        Age is required!
+                    </div>
+                </div>
+                <div class="address">
+                    <input type="text" class="input-field" formControlName="address" placeholder="Address">
+                    <div class="error" *ngIf="policyForm.submitted && f.address?.errors?.required">
+                        Address is required!
+                    </div>
+                </div>
+                <div class="amount">
+                    <input type="number" class="input-field" formControlName="amount" placeholder="Amount">
+                    <div class="error" *ngIf="policyForm.submitted && f.amount?.errors?.required">
+                        Amount is required!
+                    </div>
+                </div>
+                <div class="start-date">
+                    <input type="date" class="input-field" formControlName="startDate" placeholder="Start Date">
+                    <div class="error" *ngIf="policyForm.submitted && f.startDate?.errors?.required">
+                        Start date is required!
+                    </div>
+                </div>
+                <div class="end-date">
+                    <input type="date" class="input-field" formControlName="endDate" placeholder="End Date">
+                    <div class="error" *ngIf="policyForm.submitted && f.endDate?.errors?.required">
+                        End date is required!
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <button class="add-button" type="submit">Add Policy</button>
+            </div>
+        </div>
+    </form>
+</ng-template>

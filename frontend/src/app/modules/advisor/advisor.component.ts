@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { UserService } from './../../core/services/user/user.service';
+import { PoliciesAddEditComponent } from './policies-add-edit/policies-add-edit.component';
 
 @Component({
   selector: 'app-advisor',
@@ -9,25 +8,16 @@ import { UserService } from './../../core/services/user/user.service';
   styleUrls: ['./advisor.component.css'],
 })
 export class AdvisorComponent implements OnInit {
-  user: string;
+  @ViewChild('onAddPolicyModal') onAddPolicyModal: PoliciesAddEditComponent;
 
-  constructor(private router: Router, private userService: UserService) {}
+  constructor() { }
 
   ngOnInit(): void {
-    this.create();
+
   }
 
-  create() {
-    this.userService.createUser(this.user).subscribe(
-      (response) => {
-        console.log(response);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+  addPolicyModal() {
+    this.onAddPolicyModal.openModal()
   }
-  test(): void {
-    this.router.navigate(['manager']);
-  }
+
 }
