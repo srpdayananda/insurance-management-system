@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+
+import { IPolicy } from './../../../shared/interface/policy.interface';
 
 @Component({
   selector: 'app-policies-list',
@@ -6,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./policies-list.component.css']
 })
 export class PoliciesListComponent implements OnInit {
-
+  @Input('policies') policies: IPolicy[];
   constructor() { }
 
   ngOnInit(): void {

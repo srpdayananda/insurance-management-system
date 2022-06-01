@@ -1,1 +1,24 @@
-<p>policies-list works!</p>
+<div class="policy-list">
+    <table *ngFor="let policy of policies">
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Address</th>
+            <th>Amount</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Status</th>
+            <th>UserId</th>
+        </tr>
+        <tr>
+            <td> {{ policy.name }} </td>
+            <td> {{ policy.age }} </td>
+            <td> {{ policy.address }} </td>
+            <td> {{ policy.amount }} </td>
+            <td> {{ policy.startDate }} </td>
+            <td> {{ policy.endDate }} </td>
+            <td> {{ policy.status }} </td>
+            <td></td>
+        </tr>
+    </table>
+</div>

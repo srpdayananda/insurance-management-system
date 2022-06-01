@@ -2,10 +2,10 @@
 <div class="advisor">
   <div class="search-and-add-selection">
     <input type="text" class="search-bar" name="search" placeholder="Search Policy">
-    <button class="add-policy" (click)="addPolicyModal()" >Add Policy</button>
+    <button class="add-policy" (click)="addPolicyModal()">Add Policy</button>
   </div>
-  <div class="policies-list">
-    <app-policies-list></app-policies-list>
+  <div class="policies-list" *ngIf="policiesList.length > 0">
+    <app-policies-list [policies]="policiesList"></app-policies-list>
   </div>
 </div>
 <app-policies-add-edit #onAddPolicyModal></app-policies-add-edit>

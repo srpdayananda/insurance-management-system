@@ -18,6 +18,7 @@ export class UsersListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
   }
 
   editClickListener(user: IUser) {

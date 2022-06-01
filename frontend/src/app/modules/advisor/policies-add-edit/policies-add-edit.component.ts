@@ -2,7 +2,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-
+import { PolicyService } from './../../../core/services/policy/policy.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-policies-add-edit',
@@ -14,7 +15,13 @@ export class PoliciesAddEditComponent implements OnInit {
   modalRef?: BsModalRef;
   form: FormGroup;
 
-  constructor(private modalService: BsModalService) {
+
+  constructor(
+    private modalService: BsModalService,
+    private policyService: PolicyService,
+    private toastr: ToastrService
+  ) {
+
   }
 
   ngOnInit(): void {
@@ -45,7 +52,7 @@ export class PoliciesAddEditComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
-    console.log(this.form.value)
+    this.onCreatePolicy()
   }
 
   onClosed() {
@@ -53,6 +60,23 @@ export class PoliciesAddEditComponent implements OnInit {
     setTimeout(() => {
       this.form.reset()
     }, 500)
+  }
+
+  onCreatePolicy() {
+    this.policyService.createPolicy(this.form.value).subscribe((response) => {
+      if (response.success) {
+        this.toastr.success(response.message)
+        this.modalRef?.hide()
+        setTimeout(() => {
+          this.form.reset()
+        }, 500)
+      }
+    }, (err) => {
+      const errors = err?.error?.errors;
+      if (errors.length) {
+        errors.map((message: string) => this.toastr.error(message))
+      }
+    })
   }
 
 }
