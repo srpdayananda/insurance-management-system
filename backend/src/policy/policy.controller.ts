@@ -29,12 +29,20 @@ export default {
     },
     async getPolicies(req: IRequest, res: express.Response) {
         try {
+            let query = { userId: req.user.userId }
+            console.log(query)
+            const policyUserId = await Policy.find()
+            console.log(policyUserId)
+
+
             const getPolicies = await Policy.find()
+
             return res.status(200).send({
                 success: true,
                 message: 'policy got successfully',
                 policies: getPolicies
             })
+
         }
         catch (error) {
             return res.status(400).send({
