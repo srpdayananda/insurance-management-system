@@ -1,5 +1,5 @@
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef, EventEmitter, Output } from '@angular/core';
 
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { PolicyService } from './../../../core/services/policy/policy.service';
@@ -14,6 +14,7 @@ export class PoliciesAddEditComponent implements OnInit {
   @ViewChild('template') template: TemplateRef<any>
   modalRef?: BsModalRef;
   form: FormGroup;
+  @Output() refetch: EventEmitter<boolean>
 
 
   constructor(
@@ -21,7 +22,7 @@ export class PoliciesAddEditComponent implements OnInit {
     private policyService: PolicyService,
     private toastr: ToastrService
   ) {
-
+    this.refetch = new EventEmitter(false)
   }
 
   ngOnInit(): void {
@@ -70,6 +71,7 @@ export class PoliciesAddEditComponent implements OnInit {
         setTimeout(() => {
           this.form.reset()
         }, 500)
+        this.refetch.emit(true)
       }
     }, (err) => {
       const errors = err?.error?.errors;

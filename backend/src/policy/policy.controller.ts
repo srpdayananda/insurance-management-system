@@ -1,4 +1,5 @@
 import express from 'express';
+import mongoose from 'mongoose';
 
 import { IRequest } from './../common/interfaces/request';
 import Policy from './policy.model'
@@ -12,7 +13,8 @@ export default {
                 address: req.body.address,
                 amount: req.body.amount,
                 startDate: req.body.startDate,
-                endDate: req.body.endDate
+                endDate: req.body.endDate,
+                userId: mongoose.Types.ObjectId(req.user.userId),
             })
             return res.status(200).send({
                 success: true,

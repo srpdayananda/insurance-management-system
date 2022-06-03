@@ -7,8 +7,15 @@ td {
   margin: 2px;
 }
 table {
-  width: 800px;
+  width: 100%;
 }
 th {
-    background-color: yellowgreen;
+  background-color: yellowgreen;
+}
+
+.status {
+  background-color: red;
+  outline: solid 1px;
+  border-radius: 8px;
+  padding: 1px;
 }

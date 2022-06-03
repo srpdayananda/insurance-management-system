@@ -1,5 +1,5 @@
 <div class="policy-list">
-    <table *ngFor="let policy of policies">
+    <table>
         <tr>
             <th>Name</th>
             <th>Age</th>
@@ -10,15 +10,15 @@
             <th>Status</th>
             <th>UserId</th>
         </tr>
-        <tr>
+        <tr *ngFor="let policy of policies">
             <td> {{ policy.name }} </td>
             <td> {{ policy.age }} </td>
             <td> {{ policy.address }} </td>
-            <td> {{ policy.amount }} </td>
-            <td> {{ policy.startDate }} </td>
-            <td> {{ policy.endDate }} </td>
-            <td> {{ policy.status }} </td>
-            <td></td>
+            <td> {{ policy.amount | currency : 'LKR'}} </td>
+            <td> {{ policy.startDate | date:' dd/mm/yyyy' }} </td>
+            <td> {{ policy.endDate | date:' dd/mm/yyyy'}} </td>
+            <td> <span class="status"> {{ policy.status }} </span> </td>
+            <td> {{ policy.userId }} </td>
         </tr>
     </table>
 </div>

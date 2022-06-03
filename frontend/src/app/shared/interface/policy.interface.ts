@@ -8,5 +8,6 @@ export interface IPolicy {
     address: string,
     startDate: Date,
     endDate: Date,
-    status: Status
+    status: Status,
+    userId: string
 }
