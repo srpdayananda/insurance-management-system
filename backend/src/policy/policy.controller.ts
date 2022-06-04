@@ -30,12 +30,7 @@ export default {
     async getPolicies(req: IRequest, res: express.Response) {
         try {
             let query = { userId: req.user.userId }
-            console.log(query)
-            const policyUserId = await Policy.find()
-            console.log(policyUserId)
-
-
-            const getPolicies = await Policy.find()
+            const getPolicies = await Policy.find(query).populate('userId', ['firstName', 'lastName'])
 
             return res.status(200).send({
                 success: true,

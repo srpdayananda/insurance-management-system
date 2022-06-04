@@ -4,18 +4,27 @@ td {
   border: 1px solid black;
   border-collapse: collapse;
   text-align: center;
-  margin: 2px;
+  padding: 2px 4px;
 }
 table {
   width: 100%;
 }
 th {
-  background-color: yellowgreen;
+  background-color: rgb(255, 123, 0);
 }
 
 .status {
-  background-color: red;
-  outline: solid 1px;
+  outline: none;
+  border: none;
   border-radius: 8px;
-  padding: 1px;
+  padding: 4px 8px;
+}
+.not-approved {
+  background-color: red;
+}
+.approved {
+  background-color: yellowgreen;
+}
+.completed {
+  background-color: blue;
 }

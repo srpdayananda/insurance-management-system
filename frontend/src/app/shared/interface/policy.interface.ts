@@ -9,5 +9,5 @@ export interface IPolicy {
     startDate: Date,
     endDate: Date,
     status: Status,
-    userId: string
+    userId: any
 }

@@ -10,17 +10,21 @@ import { Status } from 'src/app/shared/enum/policy-enum';
 })
 export class PoliciesListComponent implements OnInit {
   @Input('policies') policies: IPolicy[];
-  logUserId: any
+  statuses: typeof Status
   constructor() {
-    
+    this.statuses = Status
   }
 
   ngOnInit(): void {
   }
 
-  onApproved(status: Status) {
-    console.log(status)
+  resolveStatus(status: Status) {
+    // const lowerCaseStatus = `${status.toLowerCase()}`;
+    // const capitalized = `${lowerCaseStatus.charAt(0).toUpperCase()}${lowerCaseStatus.substring(1)}`
+    // const underscore = capitalized.replace('_', ' ')
+    // console.log(underscore)
+
+    return (`${status.toLowerCase().charAt(0).toUpperCase()}${status.toLowerCase().substring(1)}`).replace('_', ' ')
   }
-  
 
 }

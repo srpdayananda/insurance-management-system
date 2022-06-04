@@ -8,7 +8,7 @@ const policySchema = new mongoose.Schema({
     startDate: { type: Date, required: true },
     endDate: { type: Date, required: true },
     status: { type: String, enum: ['NOT_APPROVED', 'APPROVED', 'COMPLETED'], default: 'NOT_APPROVED' },
-    userId: { type: mongoose.Types.ObjectId, required: true }
+    userId: { type: mongoose.Types.ObjectId, required: true ,ref:'user'}
 })
 
-export default mongoose.model('', policySchema)
+export default mongoose.model('policy', policySchema)

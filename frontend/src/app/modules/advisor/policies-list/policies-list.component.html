@@ -17,8 +17,12 @@
             <td> {{ policy.amount | currency : 'LKR'}} </td>
             <td> {{ policy.startDate | date:' dd/mm/yyyy' }} </td>
             <td> {{ policy.endDate | date:' dd/mm/yyyy'}} </td>
-            <td> <span class="status"> {{ policy.status }} </span> </td>
-            <td> {{ policy.userId }} </td>
+            <td> <span class="status"
+                    [ngClass]="{'not-approved': policy.status === statuses.NOT_APPROVED, 'approved':policy.status === statuses.APPROVED, 'completed':policy.status === statuses.COMPLETED}">
+                    {{
+                    resolveStatus(policy.status) }}
+                </span> </td>
+            <td> {{ policy.userId.firstName + " " + policy.userId.lastName }} </td>
         </tr>
     </table>
 </div>

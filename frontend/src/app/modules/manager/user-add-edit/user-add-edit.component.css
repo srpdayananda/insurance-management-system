@@ -86,8 +86,7 @@
   transition: width 2s;
 }
 .btn-save:hover {
-  width: 100px;
-  height: 50px;
+  color: black;
 }
 
 .error {
