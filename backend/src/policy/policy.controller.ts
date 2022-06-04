@@ -1,4 +1,5 @@
 import express from 'express';
+import mongoose from 'mongoose';
 
 import { IRequest } from './../common/interfaces/request';
 import Policy from './policy.model'
@@ -12,7 +13,8 @@ export default {
                 address: req.body.address,
                 amount: req.body.amount,
                 startDate: req.body.startDate,
-                endDate: req.body.endDate
+                endDate: req.body.endDate,
+                userId: mongoose.Types.ObjectId(req.user.userId),
             })
             return res.status(200).send({
                 success: true,
@@ -27,12 +29,15 @@ export default {
     },
     async getPolicies(req: IRequest, res: express.Response) {
         try {
-            const getPolicies = await Policy.find()
+            let query = { userId: req.user.userId }
+            const getPolicies = await Policy.find(query).populate('userId', ['firstName', 'lastName'])
+
             return res.status(200).send({
                 success: true,
                 message: 'policy got successfully',
                 policies: getPolicies
             })
+
         }
         catch (error) {
             return res.status(400).send({

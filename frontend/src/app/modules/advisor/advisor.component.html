@@ -1,11 +1,11 @@
 <app-header></app-header>
-<h2>advisor</h2>
-<hr>
-<button (click)="test()">click me</button>
-<br>
-<div>
-  <a href="">
-    <img src="assets/icons/update.svg" alt="" class="update-img">
-  </a>
+<div class="advisor">
+  <div class="add-selection">
+    <button class="add-policy" (click)="addPolicyModal()">Add Policy</button>
+  </div>
+  <div class="policies-list" *ngIf="policiesList.length > 0">
+    <app-policies-list [policies]="policiesList"></app-policies-list>
+  </div>
 </div>
+<app-policies-add-edit #onAddPolicyModal (refetch)="onRefetch($event)"></app-policies-add-edit>
 <app-footer></app-footer>

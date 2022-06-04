@@ -1,3 +1,7 @@
+.add-policy {
+  margin: 5%;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -6,11 +10,13 @@
   margin-top: 10px;
   align-items: center;
 }
+
 .title {
   text-align: center;
   margin-left: 100px;
   font-weight: 800;
 }
+
 .btn-closed {
   color: black;
   background-color: white;
@@ -22,49 +28,26 @@
   outline: none;
 }
 
-.body {
-  margin: 10px;
+.name {
   margin: 5%;
 }
-.email {
-  margin-bottom: 5%;
+.age {
+  margin: 5%;
 }
-.email-input {
-  border-radius: 16px;
-  padding: 5px;
-  width: 300px;
-  border: 2px solid gray;
+.address {
+  margin: 5%;
 }
-.firstName {
-  margin-bottom: 5%;
+.amount {
+  margin: 5%;
 }
-.firstName-input {
-  border-radius: 16px;
-  padding: 5px;
-  width: 300px;
-  border: 2px solid gray;
+.start-date {
+  margin: 5%;
 }
-.lastName {
-  margin-bottom: 5%;
+.end-date {
+  margin: 5%;
 }
-.lastName-input {
-  border-radius: 16px;
-  padding: 5px;
-  width: 300px;
-  border: 2px solid gray;
-}
-.password {
-  margin-bottom: 5%;
-}
-.password-input {
-  border-radius: 16px;
-  padding: 5px;
-  width: 300px;
-  border: 2px solid gray;
-}
-.role {
-  margin-bottom: 5%;
-  justify-content: flex-start;
+
+.input-field {
   border-radius: 16px;
   padding: 5px;
   width: 300px;
@@ -76,7 +59,7 @@
   justify-content: end;
 }
 
-.btn-save {
+.add-button {
   color: white;
   background: linear-gradient(to bottom right, #3ed039e7, #42dc10);
   border-radius: 16px;
@@ -85,11 +68,10 @@
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   transition: width 2s;
 }
-.btn-save:hover {
+.add-button:hover {
   color: black;
 }
 
 .error {
   color: red;
-  margin-left: 10px;
 }

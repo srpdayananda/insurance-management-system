@@ -1,33 +1,47 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { UserService } from './../../core/services/user/user.service';
-
+import { PoliciesAddEditComponent } from './policies-add-edit/policies-add-edit.component';
+import { PolicyService } from './../../core/services/policy/policy.service';
+import { IPolicy } from './../../shared/interface/policy.interface';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-advisor',
   templateUrl: './advisor.component.html',
   styleUrls: ['./advisor.component.css'],
 })
 export class AdvisorComponent implements OnInit {
-  user: string;
+  @ViewChild('onAddPolicyModal') onAddPolicyModal: PoliciesAddEditComponent;
+  policiesList: Array<IPolicy>;
 
-  constructor(private router: Router, private userService: UserService) {}
+  constructor(private policyService: PolicyService, private toastr: ToastrService) {
+    this.policiesList = []
+  }
 
   ngOnInit(): void {
-    this.create();
+    this.getPoliciesList()
   }
 
-  create() {
-    this.userService.createUser(this.user).subscribe(
-      (response) => {
-        console.log(response);
-      },
-      (error) => {
-        console.log(error);
+  onRefetch(refetch: boolean) {
+    if (refetch) {
+      this.getPoliciesList()
+    }
+  }
+
+
+  addPolicyModal() {
+    this.onAddPolicyModal.openModal()
+  }
+  getPoliciesList() {
+    this.policyService.getPolicy().subscribe((response) => {
+      if (response.success) {
+        this.policiesList = response?.policies || []
       }
-    );
+    }, (err) => {
+      const errors = err?.error?.errors
+      if (errors.length) {
+        errors.map((message: string) => this.toastr.error(message))
+      }
+    })
   }
-  test(): void {
-    this.router.navigate(['manager']);
-  }
+
 }

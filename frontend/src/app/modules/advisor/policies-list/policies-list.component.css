@@ -1,0 +1,30 @@
+table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  text-align: center;
+  padding: 2px 4px;
+}
+table {
+  width: 100%;
+}
+th {
+  background-color: rgb(255, 123, 0);
+}
+
+.status {
+  outline: none;
+  border: none;
+  border-radius: 8px;
+  padding: 4px 8px;
+}
+.not-approved {
+  background-color: red;
+}
+.approved {
+  background-color: yellowgreen;
+}
+.completed {
+  background-color: blue;
+}
