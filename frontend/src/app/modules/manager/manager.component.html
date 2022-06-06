@@ -3,9 +3,11 @@
   <div class="search-and-add-section">
     <input class="search-bar" type="text" name="search" placeholder="Search User" (keyup)="onKeyUp($event)">
     <button class="add-user" (click)="userAddEditModal()">Add User</button>
+    <button class="pending-policy">Pending Policy</button>
   </div>
   <div class="user-list" *ngIf="userList.length > 0">
-    <app-users-list [users]="searchUserList"  (onEdit)="onEditUser($event)" (onDelete)="onDeleteUser($event)" ></app-users-list>
+    <app-users-list [users]="searchUserList" (onEdit)="onEditUser($event)" (onDelete)="onDeleteUser($event)">
+    </app-users-list>
   </div>
 </div>
 <app-user-add-edit #addEditUserModal (refetch)="onRefetch($event)"></app-user-add-edit>

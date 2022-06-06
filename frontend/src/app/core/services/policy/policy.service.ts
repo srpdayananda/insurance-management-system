@@ -22,4 +22,5 @@ export class PolicyService {
   getPolicy(): Observable<HttpResponse> {
     return this.http.get<HttpResponse>(`${this.API_URL}/policy`)
   }
+
 }

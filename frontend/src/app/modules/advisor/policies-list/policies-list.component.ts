@@ -11,6 +11,7 @@ import { Status } from 'src/app/shared/enum/policy-enum';
 export class PoliciesListComponent implements OnInit {
   @Input('policies') policies: IPolicy[];
   statuses: typeof Status
+
   constructor() {
     this.statuses = Status
   }
