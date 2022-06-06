@@ -1,53 +1,54 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { PoliciesAddEditComponent } from './policies-add-edit/policies-add-edit.component';
 import { PolicyService } from './../../core/services/policy/policy.service';
 import { IPolicy } from './../../shared/interface/policy.interface';
 import { ToastrService } from 'ngx-toastr';
-import { Subscription } from 'rxjs';
+import { DataService } from './../../core/services/data/data.service';
 
 @Component({
   selector: 'app-advisor',
   templateUrl: './advisor.component.html',
   styleUrls: ['./advisor.component.css'],
 })
-export class AdvisorComponent implements OnInit, OnDestroy {
+export class AdvisorComponent implements OnInit {
   @ViewChild('onAddPolicyModal') onAddPolicyModal: PoliciesAddEditComponent;
   policiesList: Array<IPolicy>;
-  userId: string;
-  subscription: Subscription;
+  id: string;
 
   constructor(
     private policyService: PolicyService,
     private toastr: ToastrService,
-    private route: ActivatedRoute
+    private dataService: DataService
   ) {
-    this.policiesList = []
+    this.policiesList = [];
   }
 
   ngOnInit(): void {
+    this.getLoggedUser()
     this.getPoliciesList()
-    this.subscription = this.route.params.subscribe((params: Params) => {
-      this.userId = params['id']
-    })
   }
 
   onRefetch(refetch: boolean) {
     if (refetch) {
-      this.getPoliciesList()
+      this.getPoliciesList();
     }
   }
-
+  getLoggedUser() {
+    this.dataService.getLoggedUser().subscribe((loggedUser) => {
+      if (loggedUser) {
+        this.id = loggedUser.id;
+      }
+    })
+  }
 
   addPolicyModal() {
     this.onAddPolicyModal.openModal()
   }
   getPoliciesList() {
-    this.policyService.getPolicy().subscribe((response) => {
+    this.policyService.getPolicy(this.id).subscribe((response) => {
       if (response.success) {
         this.policiesList = response?.policies || []
-        
       }
     }, (err) => {
       const errors = err?.error?.errors
@@ -57,8 +58,4 @@ export class AdvisorComponent implements OnInit, OnDestroy {
     })
   }
 
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe()
-  }
 }

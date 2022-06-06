@@ -1,4 +1,6 @@
+import { StatusEnum } from './../common/enums/status';
 import express from 'express';
+import { findSourceMap } from 'module';
 import mongoose from 'mongoose';
 
 import { IRequest } from './../common/interfaces/request';
@@ -29,9 +31,10 @@ export default {
     },
     async getPolicies(req: IRequest, res: express.Response) {
         try {
-            let query = { userId: req.user.userId }
-            const getPolicies = await Policy.find(query).populate('userId', ['firstName', 'lastName'])
+            let query = { userId: req.query.id }
+            console.log(query)
 
+            const getPolicies = await Policy.find(query).populate('userId', ['firstName', 'lastName'])
             return res.status(200).send({
                 success: true,
                 message: 'policy got successfully',
@@ -100,5 +103,6 @@ export default {
                 message: 'Internal Server Error'
             })
         }
-    }
+    },
+
 }

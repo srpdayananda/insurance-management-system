@@ -26,7 +26,7 @@ export class UserService {
   updateUser(user: any): Observable<HttpResponse> {
     return this.http.put<HttpResponse>(`${this.API_URL}/user`, user)
   }
-  
+
   deleteUser(id: string): Observable<HttpResponse> {
     const params = new HttpParams().append('id', id);
     return this.http.delete<HttpResponse>(`${this.API_URL}/user`, { params })

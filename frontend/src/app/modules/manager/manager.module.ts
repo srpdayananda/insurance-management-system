@@ -9,9 +9,10 @@ import { ManagerComponent } from './manager.component';
 import { UsersListComponent } from './users-list/users-list.component';
 import { ComponentsModule } from './../../shared/components/components.module';
 import { UserAddEditComponent } from './user-add-edit/user-add-edit.component';
+import { AdvisorPoliciesComponent } from './advisor-policies/advisor-policies.component';
 
 @NgModule({
-  declarations: [ManagerComponent, UsersListComponent, UserAddEditComponent,],
+  declarations: [ManagerComponent, UsersListComponent, UserAddEditComponent, AdvisorPoliciesComponent,],
   imports: [CommonModule, ManagerRoutingModule, ReactiveFormsModule, ComponentsModule, ModalModule.forRoot(), FormsModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

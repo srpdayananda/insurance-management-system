@@ -1,0 +1,42 @@
+table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  text-align: center;
+  padding: 2px 4px;
+}
+table {
+  width: 100%;
+  margin: 20px;
+}
+th {
+  background-color: rgb(255, 123, 0);
+}
+
+.approved-button {
+  background-color: yellowgreen;
+  color: #ffffff;
+  font-weight: 500;
+  padding: 6px 24px;
+  border: none;
+  border-radius: 12px;
+  margin: 5px;
+  margin-right: 20px;
+}
+
+.status {
+  outline: none;
+  border: none;
+  border-radius: 8px;
+  padding: 4px 8px;
+}
+.not-approved {
+  background-color: red;
+}
+.approved {
+  background-color: yellowgreen;
+}
+.completed {
+  background-color: blue;
+}

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 
@@ -19,8 +19,10 @@ export class PolicyService {
     return this.http.post<HttpResponse>(`${this.API_URL}/policy`, policy)
   }
 
-  getPolicy(): Observable<HttpResponse> {
-    return this.http.get<HttpResponse>(`${this.API_URL}/policy`)
+  getPolicy(id: string): Observable<HttpResponse> {
+    console.log('$$$', id)
+    const params = new HttpParams().append('id', id);
+    return this.http.get<HttpResponse>(`${this.API_URL}/policy`, { params })
   }
 
 }
