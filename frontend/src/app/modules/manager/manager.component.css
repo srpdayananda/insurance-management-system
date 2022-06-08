@@ -22,3 +22,13 @@
 .user-list {
   padding: 20px 40px;
 }
+
+.pending-policy {
+  background-color: rgb(65, 65, 211);
+  color: white;
+  font-weight: 500;
+  padding: 6px 24px;
+  border: none;
+  border-radius: 12px;
+  margin-left: 20px;
+}

@@ -1,6 +1,8 @@
 <div class="row list">
-    <div class="wrapper" *ngFor="let user of users">
-        <div class="profile">
+    <div class="wrapper" *ngFor="let user of users;">
+        <div class="profile" 
+        [routerLink]="['/manager/policies',user.id]"
+        >
             <img src="assets/img/user.svg" alt="" class="user-image">
             <h3 class="userFullName">{{ user.firstName + " " + user.lastName }}</h3>
             <p class="user-role">{{ user.role }}</p>

@@ -28,6 +28,6 @@
     "strictInputAccessModifiers": true,
     "strictTemplates": true,
     "fullTemplateTypeCheck": true,
-     "enableIvy": false
+     "enableIvy": false,
   }
 }

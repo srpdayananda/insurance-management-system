@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 
 import { IRequest } from './../common/interfaces/request';
 import Policy from './policy.model'
+import { StatusEnum } from './../common/enums/status';
 
 export default {
     async createPolicy(req: IRequest, res: express.Response) {
@@ -29,15 +30,18 @@ export default {
     },
     async getPolicies(req: IRequest, res: express.Response) {
         try {
-            let query = { userId: req.user.userId }
+            let query;
+            if (req.query.id) {
+                query = { userId: req.query.id }
+            } else {
+                query = { status: StatusEnum.NOT_APPROVED }
+            }
             const getPolicies = await Policy.find(query).populate('userId', ['firstName', 'lastName'])
-
             return res.status(200).send({
                 success: true,
                 message: 'policy got successfully',
                 policies: getPolicies
             })
-
         }
         catch (error) {
             return res.status(400).send({
@@ -48,28 +52,21 @@ export default {
     },
     async updatePolicy(req: IRequest, res: express.Response) {
         try {
-            const foundPolicy = await Policy.findOne({ _id: req.body.id })
-            if (!foundPolicy) {
-                return res.status(400).send({
-                    success: false,
-                    message: 'Failed Policy Updated',
-                    errors: ["couldn't find relevant PolicyId"]
+            let query = { _id: req.body.id }
+
+            const findPolicy = await Policy.findOne(query);
+            if (findPolicy) {
+                let newValue = {
+                    status: req.body.status
+                }
+
+                const updatePolicy = await Policy.updateOne(query, newValue)
+                return res.status(200).send({
+                    success: true,
+                    message: 'Policy Status Update Successfully',
+                    policy: updatePolicy
                 })
             }
-            const query = { _id: req.body.id }
-            const newValue = {
-                name: req.body.name,
-                address: req.body.address,
-                amount: req.body.amount,
-                startDate: req.body.startDate,
-                endDate: req.body.endDate,
-            }
-            const updatePolicy = await Policy.updateOne(query, newValue)
-            return res.status(200).send({
-                success: true,
-                message: 'Policy Updated Successfully',
-                policy: updatePolicy
-            })
         }
         catch (error) {
             return res.status(400).send({
@@ -78,27 +75,5 @@ export default {
             })
         }
     },
-    async deletePolicy(req: IRequest, res: express.Response) {
-        try {
-            const foundPolicy = await Policy.findOne({ _id: req.query.id })
-            if (!foundPolicy) {
-                return res.status(400).send({
-                    success: false,
-                    message: 'Failed Policy Deleted',
-                    errors: ["couldn't find relevant PolicyId"]
-                })
-            }
-            const deletePolicy = await Policy.deleteOne({ _id: req.query.id })
-            return res.status(200).send({
-                success: true,
-                message: 'policy deleted successfully'
-            })
-        }
-        catch (error) {
-            return res.status(400).send({
-                success: false,
-                message: 'Internal Server Error'
-            })
-        }
-    }
+
 }

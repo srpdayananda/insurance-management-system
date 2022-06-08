@@ -13,6 +13,7 @@
 .profile {
   margin-top: 2.2em;
   position: relative;
+  cursor: pointer;
 }
 .profile::after {
   width: 100%;

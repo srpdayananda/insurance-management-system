@@ -8,4 +8,3 @@ policyRouter
     .post(policyController.createPolicy)
     .get(policyController.getPolicies)
     .put(policyController.updatePolicy)
-    .delete(policyController.deletePolicy)

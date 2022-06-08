@@ -1,0 +1,32 @@
+<app-header></app-header>
+<div class="advisor-policies">
+<button class="close-button" type="button" (click)="onClose()">Back</button>
+    <table *ngIf="policies.length > 0">
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Address</th>
+            <th>Amount</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Status</th>
+            <th>Advisor</th>
+        </tr>
+        <tr *ngFor="let policy of policies">
+            <td>{{ policy.name }}</td>
+            <td>{{ policy.age }}</td>
+            <td>{{ policy.address }}</td>
+            <td>{{ policy.amount | currency : 'LKR'}}</td>
+            <td>{{ policy.startDate | date:' dd/mm/yyyy'}}</td>
+            <td>{{ policy.endDate | date:' dd/mm/yyyy'}}</td>
+            <td> <span class="status"
+                    [ngClass]="{'not-approved': policy.status === statuses.NOT_APPROVED, 'approved':policy.status === statuses.APPROVED, 'completed':policy.status === statuses.COMPLETED}">
+                    {{
+                    resolveStatus(policy.status) }}
+                </span> </td>
+            <td>{{ policy.userId.firstName + " " + policy.userId.lastName }}</td>
+            <button class="approved-button" type="button" (click)="onApproved(policy._id)">Approved</button>
+        </tr>
+    </table>
+</div>
+<app-footer></app-footer>

@@ -11,21 +11,23 @@ import { Role } from 'src/app/shared/enum/enum';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     const token = localStorage.getItem(AUTH_TOKEN);
     const authUser = localStorage.getItem(AUTH_USER);
     const user = JSON.parse(authUser!);
+    const isAlreadyManagerPath = window.location.pathname.indexOf('manager') === 1
 
-    switch (true) {
-      case token && user.role === Role.MANAGER:
-        this.router.navigate(['manager']);
-        break;
-      case token && user.role === Role.ADVISOR:
-        break;
-      default:
-        this.router.navigate(['auth']);
+    if (!token) {
+      this.router.navigate(['auth'])
+    }
+    if (token && user.role === Role.MANAGER && !isAlreadyManagerPath) {
+      this.router.navigate(['manager'])
+    }
+    if (token && user.role === Role.ADVISOR) {
+      this.router.navigate(['advisor'])
     }
   }
+
 }
