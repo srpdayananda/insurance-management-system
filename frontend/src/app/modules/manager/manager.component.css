@@ -24,7 +24,8 @@
 }
 
 .pending-policy {
-  color: black;
+  background-color: rgb(65, 65, 211);
+  color: white;
   font-weight: 500;
   padding: 6px 24px;
   border: none;

@@ -31,16 +31,20 @@ export default {
     },
     async getPolicies(req: IRequest, res: express.Response) {
         try {
-            let query = { userId: req.query.id }
-            console.log(query)
-
+            let query;
+            if (query) {
+                query = { userId: req.query.id }
+                console.log('###', query)
+            } else {
+                query = { status: req.query.id }
+                console.log('$$$', query)
+            }
             const getPolicies = await Policy.find(query).populate('userId', ['firstName', 'lastName'])
             return res.status(200).send({
                 success: true,
                 message: 'policy got successfully',
                 policies: getPolicies
             })
-
         }
         catch (error) {
             return res.status(400).send({
@@ -51,28 +55,23 @@ export default {
     },
     async updatePolicy(req: IRequest, res: express.Response) {
         try {
-            const foundPolicy = await Policy.findOne({ _id: req.body.id })
-            if (!foundPolicy) {
-                return res.status(400).send({
-                    success: false,
-                    message: 'Failed Policy Updated',
-                    errors: ["couldn't find relevant PolicyId"]
+
+            let query = { _id: req.body.id }
+
+            const findPolicy = await Policy.findOne(query);
+            if (findPolicy) {
+                let newValue = {
+                    status: req.body.status
+                }
+
+                const updatePolicy = await Policy.updateOne(query, newValue)
+                return res.status(200).send({
+                    success: true,
+                    message: 'Policy Status Update Successfully',
+                    policy: updatePolicy
                 })
             }
-            const query = { _id: req.body.id }
-            const newValue = {
-                name: req.body.name,
-                address: req.body.address,
-                amount: req.body.amount,
-                startDate: req.body.startDate,
-                endDate: req.body.endDate,
-            }
-            const updatePolicy = await Policy.updateOne(query, newValue)
-            return res.status(200).send({
-                success: true,
-                message: 'Policy Updated Successfully',
-                policy: updatePolicy
-            })
+
         }
         catch (error) {
             return res.status(400).send({

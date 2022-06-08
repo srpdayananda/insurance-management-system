@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
@@ -22,7 +22,8 @@ export class AdvisorPoliciesComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private policyService: PolicyService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) {
     this.policies = [];
     this.statuses = Status;
@@ -52,16 +53,27 @@ export class AdvisorPoliciesComponent implements OnInit, OnDestroy {
     return (`${status.toLowerCase().charAt(0).toUpperCase()}${status.toLowerCase().substring(1)}`).replace('_', ' ')
   }
 
-  onApproved(status: Status) {
-    if (status) {
-      status = this.statuses.APPROVED;
-      console.log(status)
-      this.policyService.getPolicy(status).subscribe((response) => {
-        console.log(response)
+  onApproved(id: string) {
+    if (id) {
+      const updateStatus = {
+        id: id,
+        status: this.statuses.APPROVED
+      }
+      this.policyService.updatePolicy(updateStatus).subscribe((response) => {
+        if (response.success) {
+          this.getAdvisorPolicies()
+        }
       }, (err) => {
-        console.log(err)
+        const errors = err?.error?.errors
+        if (errors.length) {
+          errors.map((message: string) => this.toastr.error(message))
+        }
       })
     }
+  }
+
+  onClose() {
+    this.router.navigate(['../../manager'])
   }
 
 

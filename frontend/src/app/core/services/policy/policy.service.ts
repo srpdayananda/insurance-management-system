@@ -20,9 +20,13 @@ export class PolicyService {
   }
 
   getPolicy(id: string): Observable<HttpResponse> {
-    console.log('$$$', id)
     const params = new HttpParams().append('id', id);
     return this.http.get<HttpResponse>(`${this.API_URL}/policy`, { params })
+
+  }
+
+  updatePolicy(id: any): Observable<HttpResponse> {
+    return this.http.put<HttpResponse>(`${this.API_URL}/policy`, id)
   }
 
 }

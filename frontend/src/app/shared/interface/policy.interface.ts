@@ -1,7 +1,7 @@
 import { Status } from "../enum/policy-enum";
 
 export interface IPolicy {
-    id: string,
+    _id: string,
     name: string,
     age: number,
     amount: number,
