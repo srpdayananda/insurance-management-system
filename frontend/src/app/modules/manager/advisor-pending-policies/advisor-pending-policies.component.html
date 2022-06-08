@@ -1,7 +1,7 @@
 <app-header></app-header>
 <div class="advisor-pending-policies">
-    <button class="close-button" type="button" (click)="onClose()">X</button>
-    <table>
+    <button class="close-button" type="button" (click)="onClose()">Back</button>
+    <table *ngIf="policies.length > 0">
         <tr>
             <th>Name</th>
             <th>Age</th>

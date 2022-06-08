@@ -19,8 +19,11 @@ export class PolicyService {
     return this.http.post<HttpResponse>(`${this.API_URL}/policy`, policy)
   }
 
-  getPolicy(id: string): Observable<HttpResponse> {
-    const params = new HttpParams().append('id', id);
+  getPolicy(id?: string): Observable<HttpResponse> {
+    let params = new HttpParams()
+    if (id) {
+      params = new HttpParams().append('id', id);
+    }
     return this.http.get<HttpResponse>(`${this.API_URL}/policy`, { params })
 
   }

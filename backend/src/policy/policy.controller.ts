@@ -1,10 +1,9 @@
-import { StatusEnum } from './../common/enums/status';
 import express from 'express';
-import { findSourceMap } from 'module';
 import mongoose from 'mongoose';
 
 import { IRequest } from './../common/interfaces/request';
 import Policy from './policy.model'
+import { StatusEnum } from './../common/enums/status';
 
 export default {
     async createPolicy(req: IRequest, res: express.Response) {
@@ -32,12 +31,10 @@ export default {
     async getPolicies(req: IRequest, res: express.Response) {
         try {
             let query;
-            if (query) {
+            if (req.query.id) {
                 query = { userId: req.query.id }
-                console.log('###', query)
             } else {
-                query = { status: req.query.id }
-                console.log('$$$', query)
+                query = { status: StatusEnum.NOT_APPROVED }
             }
             const getPolicies = await Policy.find(query).populate('userId', ['firstName', 'lastName'])
             return res.status(200).send({
@@ -55,7 +52,6 @@ export default {
     },
     async updatePolicy(req: IRequest, res: express.Response) {
         try {
-
             let query = { _id: req.body.id }
 
             const findPolicy = await Policy.findOne(query);
@@ -71,35 +67,11 @@ export default {
                     policy: updatePolicy
                 })
             }
-
         }
         catch (error) {
             return res.status(400).send({
                 success: false,
                 message: 'Internal Sever Error'
-            })
-        }
-    },
-    async deletePolicy(req: IRequest, res: express.Response) {
-        try {
-            const foundPolicy = await Policy.findOne({ _id: req.query.id })
-            if (!foundPolicy) {
-                return res.status(400).send({
-                    success: false,
-                    message: 'Failed Policy Deleted',
-                    errors: ["couldn't find relevant PolicyId"]
-                })
-            }
-            const deletePolicy = await Policy.deleteOne({ _id: req.query.id })
-            return res.status(200).send({
-                success: true,
-                message: 'policy deleted successfully'
-            })
-        }
-        catch (error) {
-            return res.status(400).send({
-                success: false,
-                message: 'Internal Server Error'
             })
         }
     },

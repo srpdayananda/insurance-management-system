@@ -29,10 +29,9 @@ export class AdvisorPendingPoliciesComponent implements OnInit {
   }
 
   getPolices() {
-    this.policyService.getPolicy(this.statuses.NOT_APPROVED).subscribe((response) => {
+    this.policyService.getPolicy().subscribe((response) => {
       if (response.success) {
         this.policies = response?.policies || []
-        console.log(this.policies)
       }
     }, (err) => {
       const errors = err?.error?.errors
