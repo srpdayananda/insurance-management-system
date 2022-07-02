@@ -18,7 +18,6 @@ export default {
       }
 
       const reqBody = req.body;
-      console.log(reqBody)
       const errors = [];
       if (!reqBody.email) {
         errors.push("Email is required");

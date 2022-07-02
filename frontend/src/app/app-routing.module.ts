@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/auth', pathMatch: 'full' },
   {
     path: 'auth',
     loadChildren: () =>
@@ -12,7 +13,7 @@ const routes: Routes = [
     path: 'manager',
     loadChildren: () =>
       import('./modules/manager/manager.module').then((m) => m.ManagerModule),
-      canActivate:[ManagerGuard]
+    canActivate: [ManagerGuard]
   },
   {
     path: 'advisor',
@@ -25,4 +26,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
